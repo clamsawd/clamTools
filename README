@@ -1,0 +1,15 @@
+python command-line tools for clamav (clamTools)
+================================================
+
+TOOLS:
+------
+
+ * clamTools:
+       - clamTools.py
+ * clamToolsdbd:
+       - clamToolsdbd.py
+       - clamToolsdbd-log.py
+ * clamToolsd:
+       - clamToolsd.py
+       - clamToolsd-config.py
+       - clamToolsd-log.py
