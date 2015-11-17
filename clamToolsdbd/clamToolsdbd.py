@@ -16,6 +16,7 @@ import subprocess
 import os
 import sys
 import time
+import random
 
 #Check if your system use Python 3.x
 if sys.version_info<(3,0):
@@ -69,12 +70,14 @@ if os.name == "posix":
 	clamToolsqtn=HomeUser+"/.clamTools/qtn/"
 	clamToolspid=HomeUser+"/.clamTools/pid/"
 	clamToolstmp=HomeUser+"/.clamTools/tmp/"
+	LockFile=HomeUser+"/.clamTools/clamToolsdbd.lock"
 elif os.name == "nt":
 	clamToolsdb=HomeUser+"\\.clamTools\\db\\"
 	clamToolslogs=HomeUser+"\\.clamTools\\logs\\"
 	clamToolsqtn=HomeUser+"\\.clamTools\\qtn\\"
 	clamToolspid=HomeUser+"\\.clamTools\\pid\\"
 	clamToolstmp=HomeUser+"\\.clamTools\\tmp\\"
+	LockFile=HomeUser+"\\.clamTools\\clamToolsdbd.lock"
 
 #Check if exists 'freshclam.conf'
 if os.path.isfile("freshclam.conf"):
@@ -131,15 +134,49 @@ except:
 	PauseExit=input("Press ENTER to exit ")
 	exit()
 
-#Check if exists a previous log.file.
-if os.path.isfile(clamToolslogs+"clamToolsdbd.log"):
-	os.remove(clamToolslogs+"clamToolsdbd.log")
-createlog=open(clamToolslogs+'clamToolsdbd.log','w')
-createlog.close()
+#Check if clamToolsdbd is running.
+if os.path.isfile("clamToolsdbd.lock"):
+	readLock=open('clamToolsdbd.lock', 'r')
+	LockN=readLock.read()
+	readLock.close()
+	ClearScreen()
+	print ("Checking "+LockFile+"...")
+	time.sleep(4)
+	readLock2=open('clamToolsdbd.lock', 'r')
+	LockN2=readLock2.read()
+	readLock2.close()
+	if LockN != LockN2:
+		ClearScreen()
+		print ("")
+		print ("clamToolsdbd is already running.")
+		print ("")
+		PauseExit=input("Press ENTER to exit ")
+		exit()
+if not os.path.isfile("clamToolsdbd.lock"):
+	createLock=open('clamToolsdbd.lock','w')
+	createLock.write(str(random.randrange(135790)))
+	createLock.close()
+
+#Function to lock process.
+def LockProcess():
+	createLock=open('clamToolsdbd.lock','w')
+	createLock.write(str(random.randrange(135790)))
+	createLock.close()
+
+#Function to sleep 'N' seconds.
+def TimeSleep(N):
+	Time=1
+	while Time < N:
+		createLock=open('clamToolsdbd.lock','w')
+		createLock.write(str(random.randrange(135790)))
+		createLock.close()
+		time.sleep(1)
+		Time=Time + 1
 	
 #Run clamToolsdbd daemon
 ClearScreen()
-editlog=open(clamToolslogs+'clamToolsdbd.log','a')
+LockProcess()
+editlog=open(clamToolslogs+'clamToolsdbd.log','w')
 CurrentTime = time.strftime("%H:%M")
 print ("[clamToolsdbd] ["+CurrentTime+"] Initialized clamToolsdbd v"+version+" (Ctrl+C to stop)")
 print ("[clamToolsdbd] ["+CurrentTime+"] Log in "+clamToolslogs+"clamToolsdbd.log")
@@ -147,7 +184,7 @@ print ("[clamToolsdbd] ["+CurrentTime+"] Waiting 30 seconds...")
 editlog.write("[clamToolsdbd] ["+CurrentTime+"] Initialized clamToolsdbd v"+version+"\n")
 editlog.write("[clamToolsdbd] ["+CurrentTime+"] Waiting 30 seconds...\n")
 editlog.close()
-time.sleep(30)
+TimeSleep(30)
 
 DataBaseDaemon = 1
 while DataBaseDaemon <= 2:
@@ -159,4 +196,4 @@ while DataBaseDaemon <= 2:
 	print ("[clamToolsdbd] ["+CurrentTime+"] Next update in one hour...")
 	editlog.write("[clamToolsdbd] ["+CurrentTime+"] Next update in one hour...\n")
 	editlog.close()
-	time.sleep(3600)
+	TimeSleep(3600)

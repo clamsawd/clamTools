@@ -16,13 +16,14 @@ import subprocess
 import os
 import sys
 import time
+import random
 
 #Check if your system use Python 3.x
 if sys.version_info<(3,0):
 	print ("")
 	print ("You need python 3.x to run this program.")
 	print ("")
-	exit(1)
+	exit()
 
 #Function to clear screen
 def ClearScreen():
@@ -69,12 +70,14 @@ if os.name == "posix":
 	clamToolsqtn=HomeUser+"/.clamTools/qtn/"
 	clamToolspid=HomeUser+"/.clamTools/pid/"
 	clamToolstmp=HomeUser+"/.clamTools/tmp/"
+	LockFile=HomeUser+"/.clamTools/clamToolsd.lock"
 elif os.name == "nt":
 	clamToolsdb=HomeUser+"\\.clamTools\\db\\"
 	clamToolslogs=HomeUser+"\\.clamTools\\logs\\"
 	clamToolsqtn=HomeUser+"\\.clamTools\\qtn\\"
 	clamToolspid=HomeUser+"\\.clamTools\\pid\\"
 	clamToolstmp=HomeUser+"\\.clamTools\\tmp\\"
+	LockFile=HomeUser+"\\.clamTools\\clamToolsd.lock"
 
 #Check if exists 'freshclam.conf'
 if os.path.isfile("freshclam.conf"):
@@ -146,9 +149,49 @@ else:
 	PauseReturn=input("Press ENTER to exit ")
 	print ("Exiting...")
 	exit()
+
+#Check if clamToolsd is running.
+if os.path.isfile("clamToolsd.lock"):
+	readLock=open('clamToolsd.lock', 'r')
+	LockN=readLock.read()
+	readLock.close()
+	ClearScreen()
+	print ("Checking "+LockFile+"...")
+	time.sleep(4)
+	readLock2=open('clamToolsd.lock', 'r')
+	LockN2=readLock2.read()
+	readLock2.close()
+	if LockN != LockN2:
+		ClearScreen()
+		print ("")
+		print ("clamToolsd is already running.")
+		print ("")
+		PauseExit=input("Press ENTER to exit ")
+		exit()
+if not os.path.isfile("clamToolsd.lock"):
+	createLock=open('clamToolsd.lock','w')
+	createLock.write(str(random.randrange(135790)))
+	createLock.close()
+
+#Function to lock process.
+def LockProcess():
+	createLock=open('clamToolsd.lock','w')
+	createLock.write(str(random.randrange(135790)))
+	createLock.close()
+
+#Function to sleep 'N' seconds.
+def TimeSleep(N):
+	Time=1
+	while Time < N:
+		createLock=open('clamToolsd.lock','w')
+		createLock.write(str(random.randrange(135790)))
+		createLock.close()
+		time.sleep(1)
+		Time=Time + 1
 	
 #Run clamToolsd daemon
 ClearScreen()
+LockProcess()
 CurrentTime = time.strftime("%H:%M")
 editlog=open(clamToolslogs+'clamToolsd.log','w')
 print ("[clamToolsd] ["+CurrentTime+"] Initialized clamToolsd v"+version+" (Ctrl+C to stop)")
@@ -157,10 +200,11 @@ print ("[clamToolsd] ["+CurrentTime+"] Scanning scheduled for day '"+NameOfDay+"
 editlog.write("[clamToolsd] ["+CurrentTime+"] Initialized clamToolsd v"+version+"\n")
 editlog.write("[clamToolsd] ["+CurrentTime+"] Scanning scheduled for day '"+NameOfDay+"' at "+TheTime+"h\n")
 editlog.close()
-time.sleep(3)
+TimeSleep(3)
 
 Scheduled = 1
 while Scheduled <= 2:
+	LockProcess()
 	CurrentDay = time.strftime("%w")
 	CurrentDate = time.strftime("%y-%m-%d")
 	CurrentTime = time.strftime("%H:%M")
@@ -177,5 +221,5 @@ while Scheduled <= 2:
 			print ("[clamToolsd] ["+CurrentTime+"] Next scheduled for day '"+NameOfDay+"' at "+TheTime+"h")
 			editlog.write("[clamToolsd] ["+CurrentTime+"] Next scheduled for day '"+NameOfDay+"' at "+TheTime+"h\n")
 			editlog.close()
-			time.sleep(60)
-	time.sleep(2)
+			TimeSleep(60)
+	TimeSleep(2)
