@@ -1,0 +1,28 @@
+#########################################
+# Installing clamTools (Mac OS X)       #
+#########################################
+
+PREFIX=/usr
+
+install:
+	cp clamTools/clamTools.py $(PREFIX)/bin
+	cp clamToolsdbd/clamToolsdbd.py $(PREFIX)/bin
+	cp clamToolsdbd/clamToolsdbd-log.py $(PREFIX)/bin
+	cp clamToolsd/clamToolsd.py $(PREFIX)/bin
+	cp clamToolsd/clamToolsd-log.py $(PREFIX)/bin
+	cp clamToolsd/clamToolsd-config.py $(PREFIX)/bin
+	chmod +x $(PREFIX)/bin/clamTools.py
+	chmod +x $(PREFIX)/bin/clamToolsdbd.py
+	chmod +x $(PREFIX)/bin/clamToolsdbd-log.py
+	chmod +x $(PREFIX)/bin/clamToolsd.py
+	chmod +x $(PREFIX)/bin/clamToolsd-log.py
+	chmod +x $(PREFIX)/bin/clamToolsd-config.py
+	
+uninstall:
+	rm $(PREFIX)/bin/clamTools.py
+	rm $(PREFIX)/bin/clamToolsdbd.py
+	rm $(PREFIX)/bin/clamToolsdbd-log.py
+	rm $(PREFIX)/bin/clamToolsd.py
+	rm $(PREFIX)/bin/clamToolsd-log.py
+	rm $(PREFIX)/bin/clamToolsd-config.py
+
