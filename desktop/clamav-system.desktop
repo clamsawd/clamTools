@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=ClamAV Scanner
+GenericName=ClamAV Scanner
+Comment=Scan system with ClamAV
+Exec=clamTools.py
+Icon=/usr/share/icons/clamav.png
+Terminal=true
+Type=Application
+Categories=GTK;System;TerminalEmulator;
+StartupNotify=true
