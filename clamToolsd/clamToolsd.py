@@ -5,7 +5,7 @@
 # python command-line tools for clamav (clamToolsd)            |
 # Created by clamsawd (clamsawd@openmailbox.org)               |
 # Licensed by GPL v.3                                          |
-# Last update: 17-11-2015                                      |
+# Last update: 25-11-2015                                      |
 #                                                              |
 # Compatible with Python 3.x                                   |
 # --------------------------------------------------------------
@@ -208,16 +208,17 @@ while Scheduled <= 2:
 	CurrentDay = time.strftime("%w")
 	CurrentDate = time.strftime("%y-%m-%d")
 	CurrentTime = time.strftime("%H:%M")
+	LogTime = time.strftime("%H-%M")
 	if CurrentDay == DayOfWeek:
 		if CurrentTime == TheTime:
 			editlog=open(clamToolslogs+'clamToolsd.log','a')
 			print ("[clamToolsd] ["+CurrentTime+"] Running clamscan...")
 			editlog.write("[clamToolsd] ["+CurrentTime+"] Running clamscan...\n")
-			print ("[clamToolsd] ["+CurrentTime+"] Log file: "+clamToolslogs+"daemon-scan-["+CurrentDate+"]-["+CurrentTime+"].log")
-			editlog.write("[clamToolsd] ["+CurrentTime+"] Log file: "+clamToolslogs+"daemon-scan-["+CurrentDate+"]-["+CurrentTime+"].log\n")
+			print ("[clamToolsd] ["+CurrentTime+"] Log file: "+clamToolslogs+"daemon-scan-["+CurrentDate+"]-["+LogTime+"].log")
+			editlog.write("[clamToolsd] ["+CurrentTime+"] Log file: "+clamToolslogs+"daemon-scan-["+CurrentDate+"]-["+LogTime+"].log\n")
 			print ("[clamToolsd] ["+CurrentTime+"] Scanning "+Scan+"...")
 			editlog.write("[clamToolsd] ["+CurrentTime+"] Scanning "+Scan+"...\n")
-			os.system("clamscan --follow-file-symlinks=0 -r '"+Scan+"' --move="+clamToolsqtn+" --database="+clamToolsdb+" --log="+clamToolslogs+"daemon-scan-["+CurrentDate+"]-["+CurrentTime+"].log")
+			os.system("clamscan --follow-file-symlinks=0 -r '"+Scan+"' --move="+clamToolsqtn+" --database="+clamToolsdb+" --log="+clamToolslogs+"daemon-scan-["+CurrentDate+"]-["+LogTime+"].log")
 			print ("[clamToolsd] ["+CurrentTime+"] Next scheduled for day '"+NameOfDay+"' at "+TheTime+"h")
 			editlog.write("[clamToolsd] ["+CurrentTime+"] Next scheduled for day '"+NameOfDay+"' at "+TheTime+"h\n")
 			editlog.close()
