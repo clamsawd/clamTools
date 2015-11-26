@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # --------------------------------------------------------------
-# python command-line tools for clamav (clamToolsdbd)          |
+# Python Command-Line tools for clamav (clamToolsdbd)          |
 # Created by clamsawd (clamsawd@openmailbox.org)               |
 # Licensed by GPL v.3                                          |
 # Last update: 17-11-2015                                      |
@@ -69,14 +69,14 @@ if os.name == "posix":
 	clamToolslogs=HomeUser+"/.clamTools/logs/"
 	clamToolsqtn=HomeUser+"/.clamTools/qtn/"
 	clamToolspid=HomeUser+"/.clamTools/pid/"
-	clamToolstmp=HomeUser+"/.clamTools/tmp/"
+	clamToolshome=HomeUser+"/.clamTools/"
 	LockFile=HomeUser+"/.clamTools/clamToolsdbd.lock"
 elif os.name == "nt":
 	clamToolsdb=HomeUser+"\\.clamTools\\db\\"
 	clamToolslogs=HomeUser+"\\.clamTools\\logs\\"
 	clamToolsqtn=HomeUser+"\\.clamTools\\qtn\\"
 	clamToolspid=HomeUser+"\\.clamTools\\pid\\"
-	clamToolstmp=HomeUser+"\\.clamTools\\tmp\\"
+	clamToolshome=HomeUser+"\\.clamTools\\"
 	LockFile=HomeUser+"\\.clamTools\\clamToolsdbd.lock"
 
 #Check if exists 'freshclam.conf'
@@ -133,6 +133,43 @@ except:
 	print ("")
 	PauseExit=input("Press ENTER to exit ")
 	exit()
+	
+#Check if rsync is installed (optional)	
+from subprocess import PIPE, Popen
+try:
+	rsyncCheck = Popen(['rsync', '--version'], stdout=PIPE, stderr=PIPE)
+	rsyncCheck.stderr.close()
+	RsyncInstalled="yes"
+	print ("Sanesecurity signatures enabled (rsync)")
+except:
+	RsyncInstalled="no"
+	print ("Sanesecurity signatures disabled (rsync)")
+	
+def DownloadSanesecuritySigns():
+	os.chdir(clamToolsdb)
+	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/winnow.attachments.hdb . > sanesecurity.log")
+	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/winnow.complex.patterns.ldb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/winnow_bad_cw.hdb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/winnow_extended_malware.hdb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/winnow_extended_malware_links.ndb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/winnow_malware.hdb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/winnow_malware_links.ndb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/winnow_phish_complete_url.ndb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/rogue.hdb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/scamnailer.ndb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/malwarehash.hsb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/spamimg.hdb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/Sanesecurity_sigtest.yara . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/Sanesecurity_spam.yara . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/badmacro.ndb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/hackingteam.hsb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/crdfam.clamav.hdb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/porcupine.ndb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/junk.ndb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/sanesecurity.ftm . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/sigwhitelist.ign2 . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/blurl.ndb . >> sanesecurity.log")
+	os.chdir(clamToolshome)
 
 #Check if clamToolsdbd is running.
 if os.path.isfile("clamToolsdbd.lock"):
@@ -190,6 +227,13 @@ DataBaseDaemon = 1
 while DataBaseDaemon <= 2:
 	CurrentTime = time.strftime("%H:%M")
 	editlog=open(clamToolslogs+'clamToolsdbd.log','a')
+	if RsyncInstalled == "yes":
+		print ("[clamToolsdbd] ["+CurrentTime+"] Sanesecurity signatures enabled (Downloading)")
+		editlog.write("[clamToolsdbd] ["+CurrentTime+"] Sanesecurity signatures enabled (Downloading)\n")
+		DownloadSanesecuritySigns()
+	elif RsyncInstalled == "no":
+		print ("[clamToolsdbd] ["+CurrentTime+"] Sanesecurity signatures disabled (Aborted)")
+		editlog.write("[clamToolsdbd] ["+CurrentTime+"] Sanesecurity signatures disabled (Aborted)\n")
 	print ("[clamToolsdbd] ["+CurrentTime+"] Updating virus database signatures...")
 	editlog.write("[clamToolsdbd] ["+CurrentTime+"] Updating virus database signatures...\n")
 	os.system("freshclam --config-file=freshclam.conf")
