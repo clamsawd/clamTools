@@ -60,8 +60,6 @@ if not os.path.exists("qtn"):
 	os.makedirs("qtn")
 if not os.path.exists("pid"):
 	os.makedirs("pid")
-if not os.path.exists("tmp"):
-	os.makedirs("tmp")
 
 #Set variables of pclamTools
 if os.name == "posix":
@@ -69,14 +67,14 @@ if os.name == "posix":
 	clamToolslogs=HomeUser+"/.clamTools/logs/"
 	clamToolsqtn=HomeUser+"/.clamTools/qtn/"
 	clamToolspid=HomeUser+"/.clamTools/pid/"
-	clamToolstmp=HomeUser+"/.clamTools/tmp/"
+	clamToolshome=HomeUser+"/.clamTools/"
 	LockFile=HomeUser+"/.clamTools/clamToolsd.lock"
 elif os.name == "nt":
 	clamToolsdb=HomeUser+"\\.clamTools\\db\\"
 	clamToolslogs=HomeUser+"\\.clamTools\\logs\\"
 	clamToolsqtn=HomeUser+"\\.clamTools\\qtn\\"
 	clamToolspid=HomeUser+"\\.clamTools\\pid\\"
-	clamToolstmp=HomeUser+"\\.clamTools\\tmp\\"
+	clamToolshome=HomeUser+"\\.clamTools\\"
 	LockFile=HomeUser+"\\.clamTools\\clamToolsd.lock"
 
 #Check if exists 'freshclam.conf'

@@ -61,8 +61,6 @@ if not os.path.exists("qtn"):
 	os.makedirs("qtn")
 if not os.path.exists("pid"):
 	os.makedirs("pid")
-if not os.path.exists("tmp"):
-	os.makedirs("tmp")
 
 #Set variables of clamTools
 if os.name == "posix":
