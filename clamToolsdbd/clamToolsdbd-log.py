@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 
 # --------------------------------------------------------------
-# python command-line tools for clamav (clamToolsdbd-log)      |
+# Python Command-Line tools for clamav (clamToolsdbd-log)      |
 # Created by clamsawd (clamsawd@openmailbox.org)               |
 # Licensed by GPL v.3                                          |
-# Last update: 17-11-2015                                      |
+# Last update: 26-11-2015                                      |
 #                                                              |
 # Compatible with Python 3.x                                   |
 # --------------------------------------------------------------
