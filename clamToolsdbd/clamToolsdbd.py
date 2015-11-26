@@ -226,12 +226,20 @@ while DataBaseDaemon <= 2:
 	CurrentTime = time.strftime("%H:%M")
 	editlog=open(clamToolslogs+'clamToolsdbd.log','a')
 	if RsyncInstalled == "yes":
-		print ("[clamToolsdbd] ["+CurrentTime+"] Sanesecurity signatures enabled (Downloading)")
-		editlog.write("[clamToolsdbd] ["+CurrentTime+"] Sanesecurity signatures enabled (Downloading)\n")
-		DownloadSanesecuritySigns()
+		try:
+			print ("[clamToolsdbd] ["+CurrentTime+"] Sanesecurity signatures enabled (downloading)")
+			editlog.write("[clamToolsdbd] ["+CurrentTime+"] Sanesecurity signatures enabled (downloading)\n")
+			DownloadSanesecuritySigns()
+			CurrentTime = time.strftime("%H:%M")
+			print ("[clamToolsdbd] ["+CurrentTime+"] Sanesecurity signatures downloaded successfully")
+			editlog.write("[clamToolsdbd] ["+CurrentTime+"] Sanesecurity signatures downloaded successfully\n")
+		except:
+			CurrentTime = time.strftime("%H:%M")
+			print ("[clamToolsdbd] ["+CurrentTime+"] Error downloading Sanesecurity signatures")
+			editlog.write("[clamToolsdbd] ["+CurrentTime+"] Error downloading Sanesecurity signatures\n")
 	elif RsyncInstalled == "no":
-		print ("[clamToolsdbd] ["+CurrentTime+"] Sanesecurity signatures disabled (Aborted)")
-		editlog.write("[clamToolsdbd] ["+CurrentTime+"] Sanesecurity signatures disabled (Aborted)\n")
+		print ("[clamToolsdbd] ["+CurrentTime+"] Sanesecurity signatures disabled (aborted)")
+		editlog.write("[clamToolsdbd] ["+CurrentTime+"] Sanesecurity signatures disabled (aborted)\n")
 	print ("[clamToolsdbd] ["+CurrentTime+"] Updating virus database signatures...")
 	editlog.write("[clamToolsdbd] ["+CurrentTime+"] Updating virus database signatures...\n")
 	os.system("freshclam --config-file=freshclam.conf")

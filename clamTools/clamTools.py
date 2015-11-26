@@ -269,10 +269,14 @@ while MainMenu <= 2:
 		print ("- Updating virus database signatures....")
 		print ("")
 		if RsyncInstalled == "yes":
-			print ("Sanesecurity signatures enabled (Downloading)")
-			DownloadSanesecuritySigns()
+			try:
+				print ("Sanesecurity signatures enabled (downloading)")
+				DownloadSanesecuritySigns()
+				print ("Sanesecurity signatures downloaded successfully")
+			except:
+				print ("Error downloading Sanesecurity signatures")
 		elif RsyncInstalled == "no":
-			print ("Sanesecurity signatures disabled (Aborted)")
+			print ("Sanesecurity signatures disabled (aborted)")
 		os.system("freshclam --config-file=freshclam.conf")
 		print ("")
 		PauseReturn=input("Press ENTER to return ")
