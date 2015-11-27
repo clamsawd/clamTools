@@ -5,7 +5,7 @@
 # Python Command-Line tools for clamav (clamTools)             |
 # Created by clamsawd (clamsawd@openmailbox.org)               |
 # Licensed by GPL v.3                                          |
-# Last update: 26-11-2015                                      |
+# Last update: 27-11-2015                                      |
 #                                                              |
 # Compatible with Python 3.x                                   |
 # --------------------------------------------------------------
@@ -266,18 +266,21 @@ while MainMenu <= 2:
 	elif InputMenu == "u" or InputMenu == "U":
 		ClearScreen()
 		print ("")
-		print ("- Updating virus database signatures....")
-		print ("")
 		if RsyncInstalled == "yes":
 			try:
-				print ("Sanesecurity signatures enabled (downloading)")
+				print ("* Sanesecurity signatures enabled (downloading).")
 				DownloadSanesecuritySigns()
-				print ("Sanesecurity signatures downloaded successfully")
+				print ("* Sanesecurity signatures downloaded successfully.")
 			except:
-				print ("Error downloading Sanesecurity signatures")
+				print ("* Error downloading Sanesecurity signatures.")
 		elif RsyncInstalled == "no":
-			print ("Sanesecurity signatures disabled (aborted)")
-		os.system("freshclam --quiet --config-file=freshclam.conf")
+			print ("* Sanesecurity signatures disabled (aborted).")
+		print ("* Updating ClamAV virus database signatures....")
+		try:
+			os.system("freshclam --quiet --config-file=freshclam.conf")
+			print ("* ClamAV virus database signatures updated successfully.")
+		except:
+			print ("* Error updating ClamAV virus database signatures.")
 		print ("")
 		PauseReturn=input("Press ENTER to return ")
 	elif InputMenu == "l" or InputMenu == "L":
