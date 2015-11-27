@@ -250,7 +250,7 @@ while DataBaseDaemon <= 2:
 	print ("[clamToolsdbd] ["+CurrentTime+"] Updating virus database signatures...")
 	editlog.write("[clamToolsdbd] ["+CurrentTime+"] Updating virus database signatures...\n")
 	editlog.close()
-	os.system("freshclam --config-file=freshclam.conf")
+	os.system("freshclam --quiet --config-file=freshclam.conf")
 	editlog=open(clamToolslogs+'clamToolsdbd.log','a')
 	print ("[clamToolsdbd] ["+CurrentTime+"] Next update in one hour...")
 	editlog.write("[clamToolsdbd] ["+CurrentTime+"] Next update in one hour...\n")

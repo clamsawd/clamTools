@@ -277,7 +277,7 @@ while MainMenu <= 2:
 				print ("Error downloading Sanesecurity signatures")
 		elif RsyncInstalled == "no":
 			print ("Sanesecurity signatures disabled (aborted)")
-		os.system("freshclam --config-file=freshclam.conf")
+		os.system("freshclam --quiet --config-file=freshclam.conf")
 		print ("")
 		PauseReturn=input("Press ENTER to return ")
 	elif InputMenu == "l" or InputMenu == "L":
