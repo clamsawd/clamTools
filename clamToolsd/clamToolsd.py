@@ -5,7 +5,7 @@
 # Python Command-Line tools for clamav (clamToolsd)            |
 # Created by clamsawd (clamsawd@openmailbox.org)               |
 # Licensed by GPL v.3                                          |
-# Last update: 27-11-2015                                      |
+# Last update: 30-11-2015                                      |
 #                                                              |
 # Compatible with Python 3.x                                   |
 # --------------------------------------------------------------
@@ -218,7 +218,7 @@ while Scheduled <= 2:
 			editlog.write("[clamToolsd] ["+CurrentTime+"] Scanning "+Scan+"...\n")
 			editlog.close()
 			editlog=open(clamToolslogs+'clamToolsd.log','a')
-			os.system("clamscan --follow-file-symlinks=0 -r '"+Scan+"' --move="+clamToolsqtn+" --database="+clamToolsdb+" --log="+clamToolslogs+"daemon-scan-["+CurrentDate+"]-["+LogTime+"].log.")
+			os.system("clamscan --quiet --follow-file-symlinks=0 -r '"+Scan+"' --move="+clamToolsqtn+" --database="+clamToolsdb+" --log="+clamToolslogs+"daemon-scan-["+CurrentDate+"]-["+LogTime+"].log.")
 			print ("[clamToolsd] ["+CurrentTime+"] Next scheduled for day '"+NameOfDay+"' at "+TheTime+"h.")
 			editlog.write("[clamToolsd] ["+CurrentTime+"] Next scheduled for day '"+NameOfDay+"' at "+TheTime+"h.\n")
 			editlog.close()
