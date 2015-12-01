@@ -5,7 +5,7 @@
 # Python Command-Line tools for clamav (clamToolsd-config)     |
 # Created by clamsawd (clamsawd@openmailbox.org)               |
 # Licensed by GPL v.3                                          |
-# Last update: 26-11-2015                                      |
+# Last update: 01-12-2015                                      |
 #                                                              |
 # Compatible with Python 3.x                                   |
 # --------------------------------------------------------------
@@ -98,7 +98,7 @@ print ('DayOfWeek="'+DayOfWeek+'"')
 print ('NameOfDay="'+NameOfDay+'"')
 print ('TheTime="'+TimeFormat+'"')
 print ("")
-PauseExit=input("- Press ENTER to apply or Ctrl+C to cancel ")
+PauseExit=input("+ Press ENTER to apply or Ctrl+C to cancel ")
 
 #Apply configuration to 'clamToolsd.conf' file
 abcf=open('clamToolsd.conf','w')

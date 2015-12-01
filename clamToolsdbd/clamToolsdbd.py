@@ -5,7 +5,7 @@
 # Python Command-Line tools for clamav (clamToolsdbd)          |
 # Created by clamsawd (clamsawd@openmailbox.org)               |
 # Licensed by GPL v.3                                          |
-# Last update: 27-11-2015                                      |
+# Last update: 01-12-2015                                      |
 #                                                              |
 # Compatible with Python 3.x                                   |
 # --------------------------------------------------------------
@@ -123,13 +123,14 @@ try:
 except:
 	ClearScreen()
 	print ("")
-	print ("Error: 'clamav' is not installed!")
+	print ("* Error: 'clamav' is not installed!")
 	print ("")
-	print ("Help:")
-	print ("  * http://www.clamav.net/downloads#sourcecode")
-	print ("  * http://www.clamav.net/downloads#otherversions")
+	print ("* Help:")
 	print ("")
-	PauseExit=input("Press ENTER to exit ")
+	print ("   - http://www.clamav.net/downloads#sourcecode")
+	print ("   - http://www.clamav.net/downloads#otherversions")
+	print ("")
+	PauseExit=input("+ Press ENTER to exit ")
 	exit()
 	
 #Check if rsync is installed (optional)	
@@ -183,9 +184,9 @@ if os.path.isfile("clamToolsdbd.lock"):
 	if LockN != LockN2:
 		ClearScreen()
 		print ("")
-		print ("clamToolsdbd is already running.")
+		print ("* clamToolsdbd is already running.")
 		print ("")
-		PauseExit=input("Press ENTER to exit ")
+		PauseExit=input("+ Press ENTER to exit ")
 		exit()
 if not os.path.isfile("clamToolsdbd.lock"):
 	createLock=open('clamToolsdbd.lock','w')

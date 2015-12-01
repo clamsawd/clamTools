@@ -5,7 +5,7 @@
 # Python Command-Line tools for clamav (clamToolsd)            |
 # Created by clamsawd (clamsawd@openmailbox.org)               |
 # Licensed by GPL v.3                                          |
-# Last update: 30-11-2015                                      |
+# Last update: 01-12-2015                                      |
 #                                                              |
 # Compatible with Python 3.x                                   |
 # --------------------------------------------------------------
@@ -123,13 +123,14 @@ try:
 except:
 	ClearScreen()
 	print ("")
-	print ("Error: 'clamav' is not installed!")
+	print ("* Error: 'clamav' is not installed!")
 	print ("")
-	print ("Help:")
-	print ("  * http://www.clamav.net/downloads#sourcecode")
-	print ("  * http://www.clamav.net/downloads#otherversions")
+	print ("* Help:")
 	print ("")
-	PauseExit=input("Press ENTER to exit ")
+	print ("   - http://www.clamav.net/downloads#sourcecode")
+	print ("   - http://www.clamav.net/downloads#otherversions")
+	print ("")
+	PauseExit=input("+ Press ENTER to exit ")
 	exit()
 
 #Check if exists 'clamToolsd.conf'
@@ -140,11 +141,11 @@ if os.path.isfile("clamToolsd.conf"):
 else:
 	ClearScreen()
 	print ("")
-	print ("The configuration file doesn't exist")
+	print ("* The configuration file doesn't exist")
 	print ("")
-	print ("You can create it if you run 'clamToolsd-config.py'")
+	print ("* You can create it if you run 'clamToolsd-config.py'")
 	print ("")
-	PauseReturn=input("Press ENTER to exit ")
+	PauseReturn=input("+ Press ENTER to exit ")
 	print ("Exiting...")
 	exit()
 
@@ -162,9 +163,9 @@ if os.path.isfile("clamToolsd.lock"):
 	if LockN != LockN2:
 		ClearScreen()
 		print ("")
-		print ("clamToolsd is already running.")
+		print ("* clamToolsd is already running.")
 		print ("")
-		PauseExit=input("Press ENTER to exit ")
+		PauseExit=input("+ Press ENTER to exit ")
 		exit()
 if not os.path.isfile("clamToolsd.lock"):
 	createLock=open('clamToolsd.lock','w')

@@ -5,7 +5,7 @@
 # Python Command-Line tools for clamav (clamToolsd-log)        |
 # Created by clamsawd (clamsawd@openmailbox.org)               |
 # Licensed by GPL v.3                                          |
-# Last update: 26-11-2015                                      |
+# Last update: 01-12-2015                                      |
 #                                                              |
 # Compatible with Python 3.x                                   |
 # --------------------------------------------------------------
@@ -65,5 +65,5 @@ if os.path.isfile("clamToolsd.log"):
 else:
 	ClearScreen()
 	print ("")
-	print ("clamToolsd.log doesn't exist.")
+	print ("* clamToolsd.log doesn't exist.")
 	print ("")

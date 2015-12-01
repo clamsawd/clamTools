@@ -5,7 +5,7 @@
 # Python Command-Line tools for clamav (clamTools)             |
 # Created by clamsawd (clamsawd@openmailbox.org)               |
 # Licensed by GPL v.3                                          |
-# Last update: 27-11-2015                                      |
+# Last update: 01-12-2015                                      |
 #                                                              |
 # Compatible with Python 3.x                                   |
 # --------------------------------------------------------------
@@ -122,13 +122,14 @@ try:
 except:
 	ClearScreen()
 	print ("")
-	print ("Error: 'clamav' is not installed!")
+	print ("* Error: 'clamav' is not installed!")
 	print ("")
-	print ("Help:")
-	print ("  * http://www.clamav.net/downloads#sourcecode")
-	print ("  * http://www.clamav.net/downloads#otherversions")
+	print ("* Help:")
 	print ("")
-	PauseExit=input("Press ENTER to exit ")
+	print ("   - http://www.clamav.net/downloads#sourcecode")
+	print ("   - http://www.clamav.net/downloads#otherversions")
+	print ("")
+	PauseExit=input("+ Press ENTER to exit ")
 	exit()
 
 #Check if rsync is installed (optional)	
@@ -173,22 +174,22 @@ try:
 	if os.path.isfile(sys.argv[1]):
 		ClearScreen()
 		print ("")
-		print ("- Running clamscan...")
-		print ("- Loading virus database...")
+		print ("* Running clamscan...")
+		print ("* Loading virus database...")
 		print ("")
 		os.system("clamscan --follow-file-symlinks=0 -r '"+sys.argv[1]+"' --move="+clamToolsqtn+" --database="+clamToolsdb)
 		print ("")
-		PauseReturn=input("Press ENTER to return ")
+		PauseReturn=input("+ Press ENTER to return ")
 		exit()
 	elif os.path.exists(sys.argv[1]):
 		ClearScreen()
 		print ("")
-		print ("- Running clamscan...")
-		print ("- Loading virus database...")
+		print ("* Running clamscan...")
+		print ("* Loading virus database...")
 		print ("")
 		os.system("clamscan --follow-file-symlinks=0 -r '"+sys.argv[1]+"' --move="+clamToolsqtn+" --database="+clamToolsdb)
 		print ("")
-		PauseReturn=input("Press ENTER to return ")
+		PauseReturn=input("+ Press ENTER to return ")
 		exit()
 	else:
 		print ("")
@@ -230,39 +231,39 @@ while MainMenu <= 2:
 		CurrentDate = time.strftime("%y-%m-%d")
 		CurrentTime = time.strftime("%H-%M")
 		print ("")
-		print ("- Running clamscan...")
-		print ("- Log file: "+clamToolslogs+"home-scan-["+CurrentDate+"]-["+CurrentTime+"].log")
-		print ("- Loading virus database...")
+		print ("* Running clamscan...")
+		print ("* Log file: "+clamToolslogs+"home-scan-["+CurrentDate+"]-["+CurrentTime+"].log")
+		print ("* Loading virus database...")
 		print ("")
 		os.system("clamscan --follow-file-symlinks=0 -r '"+HomeUser+"' --move="+clamToolsqtn+" --database="+clamToolsdb+" --log="+clamToolslogs+"home-scan-["+CurrentDate+"]-["+CurrentTime+"].log")
 		print ("")
-		PauseReturn=input("Press ENTER to return ")
+		PauseReturn=input("+ Press ENTER to return ")
 	elif InputMenu == "c" or InputMenu == "C":
 		ClearScreen()
 		print ("")
-		ForFtoScan=input("Type the folder(s) or file(s) to scan: ")
+		ForFtoScan=input("- Type the folder(s) or file(s) to scan: ")
 		CurrentDate = time.strftime("%y-%m-%d")
 		CurrentTime = time.strftime("%H-%M")
 		print ("")
-		print ("- Running clamscan...")
-		print ("- Log file: "+clamToolslogs+"custom-scan-["+CurrentDate+"]-["+CurrentTime+"].log")
-		print ("- Loading virus database...")
+		print ("* Running clamscan...")
+		print ("* Log file: "+clamToolslogs+"custom-scan-["+CurrentDate+"]-["+CurrentTime+"].log")
+		print ("* Loading virus database...")
 		print ("")
 		os.system("clamscan --follow-file-symlinks=0 -r '"+ForFtoScan+"' --move="+clamToolsqtn+" --database="+clamToolsdb+" --log="+clamToolslogs+"custom-scan-["+CurrentDate+"]-["+CurrentTime+"].log")
 		print ("")
-		PauseReturn=input("Press ENTER to return ")
+		PauseReturn=input("+ Press ENTER to return ")
 	elif InputMenu == "s" or InputMenu == "S":
 		ClearScreen()
 		CurrentDate = time.strftime("%y-%m-%d")
 		CurrentTime = time.strftime("%H-%M")
 		print ("")
-		print ("- Running clamscan...")
-		print ("- Log file: "+clamToolslogs+"system-scan-["+CurrentDate+"]-["+CurrentTime+"].log")
-		print ("- Loading virus database...")
+		print ("* Running clamscan...")
+		print ("* Log file: "+clamToolslogs+"system-scan-["+CurrentDate+"]-["+CurrentTime+"].log")
+		print ("* Loading virus database...")
 		print ("")
 		os.system("clamscan --follow-file-symlinks=0 -r '"+SystemUser+"' --move="+clamToolsqtn+" --database="+clamToolsdb+" --log="+clamToolslogs+"system-scan-["+CurrentDate+"]-["+CurrentTime+"].log")
 		print ("")
-		PauseReturn=input("Press ENTER to return ")
+		PauseReturn=input("+ Press ENTER to return ")
 	elif InputMenu == "u" or InputMenu == "U":
 		ClearScreen()
 		print ("")
@@ -282,7 +283,7 @@ while MainMenu <= 2:
 		except:
 			print ("* Error updating ClamAV virus database signatures.")
 		print ("")
-		PauseReturn=input("Press ENTER to return ")
+		PauseReturn=input("+ Press ENTER to return ")
 	elif InputMenu == "l" or InputMenu == "L":
 		ClearScreen()
 		print ("")
@@ -293,7 +294,7 @@ while MainMenu <= 2:
 		elif os.name == "nt":
 			os.system('dir /B '+clamToolslogs+' | find ".log"')
 		print ("")
-		PauseReturn=input("Press ENTER to return ")
+		PauseReturn=input("+ Press ENTER to return ")
 	elif InputMenu == "n" or InputMenu == "N":
 		ClearScreen()
 		print ("")
@@ -304,7 +305,7 @@ while MainMenu <= 2:
 		elif os.name == "nt":
 			os.system("dir /B "+clamToolsqtn)
 		print ("")
-		PauseReturn=input("Press ENTER to return ")
+		PauseReturn=input("+ Press ENTER to return ")
 	elif InputMenu == "q" or InputMenu == "Q":
 		print ("")
 		print ("Exiting...")
@@ -312,6 +313,6 @@ while MainMenu <= 2:
 	else:
 		ClearScreen()
 		print ("")
-		print ("Invalid Option")
+		print ("* Invalid Option")
 		print ("")
-		PauseReturn=input("Press ENTER to return ")		
+		PauseReturn=input("+ Press ENTER to return ")		
