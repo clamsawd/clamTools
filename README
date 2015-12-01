@@ -4,12 +4,37 @@ Python Command-Line tools for ClamAV (clamTools)
 TOOLS:
 ------
 
- * clamTools:
-       - clamTools.py
- * clamToolsdbd:
-       - clamToolsdbd.py
-       - clamToolsdbd-log.py
- * clamToolsd:
-       - clamToolsd.py
-       - clamToolsd-config.py
-       - clamToolsd-log.py
+ * (clamTools):
+       - clamTools.py - Tool for update signatures, scan & view logs/quarantine.
+ * (clamToolsdbd):
+       - clamToolsdbd.py: Daemon to update Sanesecurity/ClamAV signatures.
+       - clamToolsdbd-log.py: Tool to create a valid configuration file.
+ * (clamToolsd):
+       - clamToolsd.py: Daemon to scheduled scans.
+       - clamToolsd-config.py: Tool to create a valid configuration file.
+       - clamToolsd-log.py: Tool to see the log file when daemon is running.
+
+HOW TO INSTALL
+--------------
+
+ * Unix systems (GNU/Linux,*BSD, etc..)
+ ======================================
+
+   - Open the terminal and type the following comands:
+   
+     $ git https://github.com/clamsawd/clamTools.git
+     $ cd clamTools
+     # make install
+     
+   Note: You must install git, python3 & clamav previously.
+
+ * Mac OS X
+ ==========
+ 
+     - Open the terminal and type the following comands:
+     
+     $ git clone https://github.com/clamsawd/clamTools.git
+     $ cd clamTools
+     # make -f makefile.osx
+     
+   Note: You must install git, python3 & clamav previously.
