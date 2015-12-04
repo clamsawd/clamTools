@@ -31,10 +31,19 @@ HOW TO INSTALL
  * Mac OS X
  ==========
  
-     - Open the terminal and type the following comands:
+   - Open the terminal and type the following comands:
      
      $ git clone https://github.com/clamsawd/clamTools.git
      $ cd clamTools
      # make -f makefile.osx
      
    Note: You must install git, python3 & clamav previously.
+   
+ * Windows
+ =========
+ 
+   - Install Python 3.x from https://www.python.org/.
+   - Download https://github.com/clamsawd/clamTools/archive/master.zip
+   - Unzip the package and rename it to 'clamTools'.
+   - Copy the folder to 'C:\Program Files\'.
+   - Double click on 'install.cmd'.
