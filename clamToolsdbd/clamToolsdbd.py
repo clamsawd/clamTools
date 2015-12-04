@@ -5,11 +5,12 @@
 # Python Command-Line tools for clamav (clamToolsdbd)          |
 # Created by clamsawd (clamsawd@openmailbox.org)               |
 # Licensed by GPL v.3                                          |
-# Last update: 01-12-2015                                      |
+# Last update: 04-12-2015                                      |
 #                                                              |
+# Dependences: ClamAV & Rsync (Optional)                       |
 # Compatible with Python 3.x                                   |
 # --------------------------------------------------------------
-version=".unknown"
+version="1.0"
 
 #Import python-modules
 import subprocess
@@ -228,8 +229,8 @@ while DataBaseDaemon <= 2:
 	editlog=open(clamToolslogs+'clamToolsdbd.log','a')
 	if RsyncInstalled == "yes":
 		try:
-			print ("[clamToolsdbd] ["+CurrentTime+"] Sanesecurity signatures enabled (downloading).")
-			editlog.write("[clamToolsdbd] ["+CurrentTime+"] Sanesecurity signatures enabled (downloading).\n")
+			print ("[clamToolsdbd] ["+CurrentTime+"] Sanesecurity signatures enabled (rsync) (downloading).")
+			editlog.write("[clamToolsdbd] ["+CurrentTime+"] Sanesecurity signatures enabled (rsync) (downloading).\n")
 			editlog.close()
 			DownloadSanesecuritySigns()
 			CurrentTime = time.strftime("%H:%M")
@@ -244,8 +245,8 @@ while DataBaseDaemon <= 2:
 			editlog.write("[clamToolsdbd] ["+CurrentTime+"] Error downloading Sanesecurity signatures.\n")
 			editlog.close()
 	elif RsyncInstalled == "no":
-		print ("[clamToolsdbd] ["+CurrentTime+"] Sanesecurity signatures disabled (aborted).")
-		editlog.write("[clamToolsdbd] ["+CurrentTime+"] Sanesecurity signatures disabled (aborted).\n")
+		print ("[clamToolsdbd] ["+CurrentTime+"] Sanesecurity signatures disabled (rsync) (aborted).")
+		editlog.write("[clamToolsdbd] ["+CurrentTime+"] Sanesecurity signatures disabled (rsync) (aborted).\n")
 		editlog.close()
 	editlog=open(clamToolslogs+'clamToolsdbd.log','a')
 	print ("[clamToolsdbd] ["+CurrentTime+"] Updating ClamAV virus database signatures....")

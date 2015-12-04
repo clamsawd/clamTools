@@ -5,11 +5,12 @@
 # Python Command-Line tools for clamav (clamTools)             |
 # Created by clamsawd (clamsawd@openmailbox.org)               |
 # Licensed by GPL v.3                                          |
-# Last update: 01-12-2015                                      |
+# Last update: 04-12-2015                                      |
 #                                                              |
+# Dependences: ClamAV & Rsync (Optional)                       |
 # Compatible with Python 3.x                                   |
 # --------------------------------------------------------------
-version=".unknown"
+version="1.0"
 
 #Import python-modules
 import subprocess
@@ -269,13 +270,13 @@ while MainMenu <= 2:
 		print ("")
 		if RsyncInstalled == "yes":
 			try:
-				print ("* Sanesecurity signatures enabled (downloading).")
+				print ("* Sanesecurity signatures enabled (rsync) (downloading).")
 				DownloadSanesecuritySigns()
 				print ("* Sanesecurity signatures downloaded successfully.")
 			except:
 				print ("* Error downloading Sanesecurity signatures.")
 		elif RsyncInstalled == "no":
-			print ("* Sanesecurity signatures disabled (aborted).")
+			print ("* Sanesecurity signatures disabled (rsync) (aborted).")
 		print ("* Updating ClamAV virus database signatures....")
 		try:
 			os.system("freshclam --quiet --config-file=freshclam.conf")

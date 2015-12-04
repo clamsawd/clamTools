@@ -5,11 +5,12 @@
 # Python Command-Line tools for clamav (clamToolsd)            |
 # Created by clamsawd (clamsawd@openmailbox.org)               |
 # Licensed by GPL v.3                                          |
-# Last update: 01-12-2015                                      |
+# Last update: 04-12-2015                                      |
 #                                                              |
+# Dependences: ClamAV & Rsync (Optional)                       |
 # Compatible with Python 3.x                                   |
 # --------------------------------------------------------------
-version=".unknown"
+version="1.0"
 
 #Import python-modules
 import subprocess
