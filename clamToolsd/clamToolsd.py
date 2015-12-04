@@ -219,7 +219,7 @@ while Scheduled <= 2:
 			editlog.write("[clamToolsd] ["+CurrentTime+"] Scanning "+Scan+"...\n")
 			editlog.close()
 			editlog=open(clamToolslogs+'clamToolsd.log','a')
-			os.system("clamscan --quiet --follow-file-symlinks=0 -r '"+Scan+"' --move="+clamToolsqtn+" --database="+clamToolsdb+" --log="+clamToolslogs+"daemon-scan-["+CurrentDate+"]-["+LogTime+"].log.")
+			os.system("clamscan --quiet --follow-dir-symlinks=0 --follow-file-symlinks=0 -r '"+Scan+"' --move="+clamToolsqtn+" --database="+clamToolsdb+" --log="+clamToolslogs+"daemon-scan-["+CurrentDate+"]-["+LogTime+"].log.")
 			print ("[clamToolsd] ["+CurrentTime+"] Next scheduled for day '"+NameOfDay+"' at "+TheTime+"h.")
 			editlog.write("[clamToolsd] ["+CurrentTime+"] Next scheduled for day '"+NameOfDay+"' at "+TheTime+"h.\n")
 			editlog.close()
