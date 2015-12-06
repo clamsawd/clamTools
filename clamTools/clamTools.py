@@ -5,7 +5,7 @@
 # Python Command-Line tools for clamav (clamTools)             |
 # Created by clamsawd (clamsawd@openmailbox.org)               |
 # Licensed by GPL v.3                                          |
-# Last update: 04-12-2015                                      |
+# Last update: 06-12-2015                                      |
 #                                                              |
 # Dependences: ClamAV & Rsync (Optional)                       |
 # Compatible with Python 3.x                                   |
@@ -158,8 +158,6 @@ def DownloadSanesecuritySigns():
 	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/scamnailer.ndb . >> sanesecurity.log")
 	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/malwarehash.hsb . >> sanesecurity.log")
 	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/spamimg.hdb . >> sanesecurity.log")
-	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/Sanesecurity_sigtest.yara . >> sanesecurity.log")
-	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/Sanesecurity_spam.yara . >> sanesecurity.log")
 	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/badmacro.ndb . >> sanesecurity.log")
 	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/hackingteam.hsb . >> sanesecurity.log")
 	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/crdfam.clamav.hdb . >> sanesecurity.log")
