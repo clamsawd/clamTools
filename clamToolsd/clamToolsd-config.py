@@ -5,7 +5,7 @@
 # Python Command-Line tools for clamav (clamToolsd-config)     |
 # Created by clamsawd (clamsawd@openmailbox.org)               |
 # Licensed by GPL v.3                                          |
-# Last update: 04-12-2015                                      |
+# Last update: 20-02-2016                                      |
 #                                                              |
 # Dependences: ClamAV & Rsync (Optional)                       |
 # Compatible with Python 3.x                                   |
@@ -83,7 +83,7 @@ elif DayOfWeekInput == "6":
 	DayOfWeek="6"
 	NameOfDay="Saturday"
 else:
-	DayOfWeek="7"
+	DayOfWeek="0"
 	NameOfDay="Sunday"
 TimeFormat=input("Type the time (HH:MM - 24h format): ")
 
