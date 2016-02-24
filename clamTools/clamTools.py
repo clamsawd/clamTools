@@ -5,7 +5,7 @@
 # Python Command-Line tools for clamav (clamTools)             |
 # Created by clamsawd (clamsawd@openmailbox.org)               |
 # Licensed by GPL v.3                                          |
-# Last update: 06-12-2015                                      |
+# Last update: 24-02-2016                                      |
 #                                                              |
 # Dependences: ClamAV & Rsync (Optional)                       |
 # Compatible with Python 3.x                                   |
@@ -144,28 +144,32 @@ except:
 	RsyncInstalled="no"
 	print ("Sanesecurity signatures disabled (rsync)")
 	
+# Initial Mirror
+URL="rsync.sanesecurity.net"
+MIRROR="NET"
+	
 def DownloadSanesecuritySigns():
 	os.chdir(clamToolsdb)
-	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/winnow.attachments.hdb . > sanesecurity.log")
-	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/winnow.complex.patterns.ldb . >> sanesecurity.log")
-	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/winnow_bad_cw.hdb . >> sanesecurity.log")
-	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/winnow_extended_malware.hdb . >> sanesecurity.log")
-	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/winnow_extended_malware_links.ndb . >> sanesecurity.log")
-	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/winnow_malware.hdb . >> sanesecurity.log")
-	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/winnow_malware_links.ndb . >> sanesecurity.log")
-	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/winnow_phish_complete_url.ndb . >> sanesecurity.log")
-	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/rogue.hdb . >> sanesecurity.log")
-	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/scamnailer.ndb . >> sanesecurity.log")
-	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/malwarehash.hsb . >> sanesecurity.log")
-	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/spamimg.hdb . >> sanesecurity.log")
-	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/badmacro.ndb . >> sanesecurity.log")
-	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/hackingteam.hsb . >> sanesecurity.log")
-	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/crdfam.clamav.hdb . >> sanesecurity.log")
-	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/porcupine.ndb . >> sanesecurity.log")
-	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/junk.ndb . >> sanesecurity.log")
-	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/sanesecurity.ftm . >> sanesecurity.log")
-	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/sigwhitelist.ign2 . >> sanesecurity.log")
-	os.system("rsync -avhp rsync://rsync.sanesecurity.net/sanesecurity/blurl.ndb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://"+URL+"/sanesecurity/winnow.attachments.hdb . > sanesecurity.log")
+	os.system("rsync -avhp rsync://"+URL+"/sanesecurity/winnow.complex.patterns.ldb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://"+URL+"/sanesecurity/winnow_bad_cw.hdb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://"+URL+"/sanesecurity/winnow_extended_malware.hdb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://"+URL+"/sanesecurity/winnow_extended_malware_links.ndb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://"+URL+"/sanesecurity/winnow_malware.hdb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://"+URL+"/sanesecurity/winnow_malware_links.ndb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://"+URL+"/sanesecurity/winnow_phish_complete_url.ndb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://"+URL+"/sanesecurity/rogue.hdb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://"+URL+"/sanesecurity/scamnailer.ndb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://"+URL+"/sanesecurity/malwarehash.hsb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://"+URL+"/sanesecurity/spamimg.hdb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://"+URL+"/sanesecurity/badmacro.ndb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://"+URL+"/sanesecurity/hackingteam.hsb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://"+URL+"/sanesecurity/crdfam.clamav.hdb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://"+URL+"/sanesecurity/porcupine.ndb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://"+URL+"/sanesecurity/junk.ndb . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://"+URL+"/sanesecurity/sanesecurity.ftm . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://"+URL+"/sanesecurity/sigwhitelist.ign2 . >> sanesecurity.log")
+	os.system("rsync -avhp rsync://"+URL+"/sanesecurity/blurl.ndb . >> sanesecurity.log")
 	os.chdir(clamToolshome)
 
 #Check parameters
@@ -268,11 +272,17 @@ while MainMenu <= 2:
 		print ("")
 		if RsyncInstalled == "yes":
 			try:
-				print ("* Sanesecurity signatures enabled (rsync) (downloading).")
+				print ("* Sanesecurity signatures enabled (rsync) (downloading) ("+MIRROR+").")
+				if MIRROR == "NET":
+					URL="rsync.sanesecurity.co.uk"
+					MIRROR="UK"
+				elif MIRROR == "UK":
+					URL="rsync.sanesecurity.net"
+					MIRROR="NET"
 				DownloadSanesecuritySigns()
 				print ("* Sanesecurity signatures downloaded successfully.")
 			except:
-				print ("* Error downloading Sanesecurity signatures.")
+				print ("* Error downloading Sanesecurity signatures ("+MIRROR+").")
 		elif RsyncInstalled == "no":
 			print ("* Sanesecurity signatures disabled (rsync) (aborted).")
 		print ("* Updating ClamAV virus database signatures....")
