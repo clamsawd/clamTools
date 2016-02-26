@@ -10,7 +10,7 @@
 # Dependences: ClamAV & Rsync (Optional)                       |
 # Compatible with Python 3.x                                   |
 # --------------------------------------------------------------
-version="1.0"
+version="1.0.1"
 
 #Import python-modules
 import os
