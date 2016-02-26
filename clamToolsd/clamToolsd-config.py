@@ -5,7 +5,7 @@
 # Python Command-Line tools for clamav (clamToolsd-config)     |
 # Created by clamsawd (clamsawd@openmailbox.org)               |
 # Licensed by GPL v.3                                          |
-# Last update: 20-02-2016                                      |
+# Last update: 26-02-2016                                      |
 #                                                              |
 # Dependences: ClamAV & Rsync (Optional)                       |
 # Compatible with Python 3.x                                   |
@@ -62,6 +62,14 @@ ClearScreen()
 print ("")
 print ("** clamToolsd (config) v"+version+" **")
 print ("")
+if os.name == "posix":
+	print ("[RECOMMENDED] -> Type the path in single quotes.") 
+	print ("[EXAMPLE] -> '/opt/example/'")
+	print ("")
+elif os.name == "nt":
+	print ("[RECOMMENDED] -> Type the path in double quotes.")
+	print ('[EXAMPLE] -> "C:\\Program Files"')
+	print ("")
 ForFtoScan=input("Type the folder(s) or file(s) to scan: ")
 DayOfWeekInput=input("[Default: Sunday] Set Day of week (Monday(1), Tuesday(2), Wednesday(3), Thursday(4), Friday(5), Saturday(6), Sunday(7)): ")
 if DayOfWeekInput == "1":
