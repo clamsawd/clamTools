@@ -244,6 +244,14 @@ while MainMenu <= 2:
 	elif InputMenu == "c" or InputMenu == "C":
 		ClearScreen()
 		print ("")
+		if os.name == "posix":
+			print ("[WARNING] -> Type the path in single quotes.") 
+			print ("[EXAMPLE] -> '/opt/example/'")
+			print ("")
+		elif os.name == "nt":
+			print ("[WARNING] -> Type the path in double quotes.")
+			print ('[EXAMPLE] -> "C:\\Program Files"')
+			print ("")
 		ForFtoScan=input("- Type the folder(s) or file(s) to scan: ")
 		CurrentDate = time.strftime("%y-%m-%d")
 		CurrentTime = time.strftime("%H-%M")
