@@ -3,9 +3,9 @@
 
 # --------------------------------------------------------------
 # Python Command-Line tools for clamav (clamToolsdbd-log)      |
-# Created by clamsawd (clamsawd@openmailbox.org)               |
+# Created by q3aql (q3aql@openmailbox.org)                     |
 # Licensed by GPL v.3                                          |
-# Last update: 26-02-2016                                      |
+# Last update: 01-03-2016                                      |
 #                                                              |
 # Dependences: ClamAV & Rsync (Optional)                       |
 # Compatible with Python 3.x                                   |
