@@ -22,7 +22,7 @@ HOW TO INSTALL
 
    - Open the terminal and type the following comands:
    
-     $ git https://github.com/clamsawd/clamTools.git
+     $ git https://github.com/q3aql/clamTools.git
      $ cd clamTools
      # make install
      
@@ -33,7 +33,7 @@ HOW TO INSTALL
  
    - Open the terminal and type the following comands:
      
-     $ git clone https://github.com/clamsawd/clamTools.git
+     $ git clone https://github.com/q3aql/clamTools.git
      $ cd clamTools
      # make -f makefile.osx
      
@@ -43,7 +43,7 @@ HOW TO INSTALL
  =========
  
    - Install Python 3.x from https://www.python.org/.
-   - Download https://github.com/clamsawd/clamTools/archive/master.zip
+   - Download https://github.com/q3aql/clamTools/archive/master.zip
    - Unzip the package and rename it to 'clamTools'.
    - Copy the folder to 'C:\Program Files\'.
    - Double click on 'install.cmd'.
