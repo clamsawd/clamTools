@@ -8,7 +8,7 @@ TOOLS:
        - clamTools.py - Tool for update signatures, scan & view logs/quarantine.
  * (clamToolsdbd):
        - clamToolsdbd.py: Daemon to update Sanesecurity/ClamAV signatures.
-       - clamToolsdbd-log.py: Tool to create a valid configuration file.
+       - clamToolsdbd-log.py: Tool to see the log file when daemon is running.
  * (clamToolsd):
        - clamToolsd.py: Daemon to scheduled scans.
        - clamToolsd-config.py: Tool to create a valid configuration file.
