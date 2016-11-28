@@ -22,7 +22,7 @@ HOW TO INSTALL
 
    - Open the terminal and type the following comands:
    
-     $ git https://github.com/q3aql/clamTools.git
+     $ git clone https://github.com/q3aql/clamTools.git
      $ cd clamTools
      # make install
      
