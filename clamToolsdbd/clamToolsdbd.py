@@ -175,13 +175,13 @@ def DownloadSanesecuritySigns():
 
 #Check if clamToolsdbd is running.
 if os.path.isfile("clamToolsdbd.lock"):
-	readLock=open('clamToolsdbd.lock', 'r')
+	readLock=open('clamToolsdbd.lock', 'r', encoding="latin-1")
 	LockN=readLock.read()
 	readLock.close()
 	ClearScreen()
 	print ("Checking "+LockFile+"...")
 	time.sleep(4)
-	readLock2=open('clamToolsdbd.lock', 'r')
+	readLock2=open('clamToolsdbd.lock', 'r', encoding="latin-1")
 	LockN2=readLock2.read()
 	readLock2.close()
 	if LockN != LockN2:

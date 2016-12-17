@@ -152,13 +152,13 @@ else:
 
 #Check if clamToolsd is running.
 if os.path.isfile("clamToolsd.lock"):
-	readLock=open('clamToolsd.lock', 'r')
+	readLock=open('clamToolsd.lock', 'r', encoding="latin-1")
 	LockN=readLock.read()
 	readLock.close()
 	ClearScreen()
 	print ("Checking "+LockFile+"...")
 	time.sleep(4)
-	readLock2=open('clamToolsd.lock', 'r')
+	readLock2=open('clamToolsd.lock', 'r', encoding="latin-1")
 	LockN2=readLock2.read()
 	readLock2.close()
 	if LockN != LockN2:
